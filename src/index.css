@@ -2,6 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-.same{
-    @apply hover:bg-white hover:text-black px-2
-}
