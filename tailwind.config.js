@@ -2,7 +2,18 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+     backgroundColor:{
+      'rd':'#1A89F2'
+     },
+     animation:{
+      'bnc-slow': 'bounce 3s linear infinite'
+     },
+     colors:{
+      'ok':'#B1D810'
+     }
+    
+    },
     screens: {
       '2xl': { 'max': '1536px' },
       'xl': { 'max': '1280px' },
