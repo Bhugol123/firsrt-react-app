@@ -6,7 +6,7 @@ const Tech = () => {
     <div className='space-y-4'>
       <h1 className='text-3xl font-bold text-center'>Technology I Used</h1>
 
-      <div className="dev-icones grid grid-cols-4 justify-items-center">
+      <div className="dev-icones grid grid-cols-4 justify-items-center lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:mt-5">
         <DiAndroid size={200} className='animate-bounce'/>
         <DiPython size={200}/>
         <DiJava size={200}/>
