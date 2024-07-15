@@ -2,6 +2,7 @@ import { faker } from '@faker-js/faker';
 import { Button } from '@material-tailwind/react';
 import React, { useState } from 'react';
 import ProfilCard from '../component/ProfilCard';
+
 const Home = () => {
 
   const [users, setUsers] = useState([]);
@@ -18,13 +19,9 @@ const Home = () => {
 
   }
 
-
-
-
-
   return (
     <div className='p-4'>
-      <ProfilCard/>
+     
 
       <div className="adds flex justify-end">
         <Button onClick={handleAdd} ripple={true} color='green'>Add User</Button>
@@ -32,10 +29,7 @@ const Home = () => {
 
       <div className="users">
         {users.map((user, i) => {
-          return <div key={i}>
-            <img src={user.image} alt="" />
-            <h1>{user.username}</h1>
-          </div>
+          return <ProfilCard user={user}/>
         })}
       </div>
 
