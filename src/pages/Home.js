@@ -1,37 +1,43 @@
-import { faker } from '@faker-js/faker';
-import { Button } from '@material-tailwind/react';
-import React, { useState } from 'react';
-import ProfilCard from '../component/ProfilCard';
+import { Button, Input } from '@material-tailwind/react'
+import { formik, useFormik } from 'formik'
+import React, {useState} from 'react'
+
 
 const Home = () => {
 
-  const [users, setUsers] = useState([]);
-
-
-
-  const handleAdd = () => {
-    const newObj = {
-      email: faker.internet.email(),
-      username: faker.internet.userName(),
-      image: faker.image.avatarLegacy()
-    };
-    setUsers((prev) => [...prev, newObj]);
-
-  }
-
+  const [user, setUser] = useState([]);
+ 
+  const formik = useFormik({
+    initialValues :{
+      email: ''
+    },
+    onSubmit:(val)=>{
+    setUser ([...user, val])
+    }
+  })
+  
   return (
-    <div className='p-4'>
+    <div className='p-4 max-w-[300px]'>
+
+      <form onSubmit={formik.handleSubmit} className='space-y-2'>
      
+          <Input
+            name = 'email'
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            size="lg" label='Email' placeholder="name@mail.com"
+          
+          />
 
-      <div className="adds flex justify-end">
-        <Button onClick={handleAdd} ripple={true} color='green'>Add User</Button>
-      </div>
+          <Button type='submit'size='sm'>Submit</Button>
+      </form>
 
-      <div className="users">
-        {users.map((user, i) => {
-          return <ProfilCard user={user}/>
+      <div>
+        {user.map((user, i)=>{
+          return <li key={i}>{user.email}</li>
         })}
       </div>
+     
 
 
 
