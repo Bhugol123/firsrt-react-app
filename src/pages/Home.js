@@ -1,37 +1,19 @@
-import axios from 'axios'
+
 import React, { useEffect } from 'react'
-import { useState } from "react";
 import CategoryCard from '../components/CategoryCard';
+import { useApiHooks } from '../hooks/apiHooks';
+import LoadingCompo from '../components/LoadingCompo';
 
 
 
 
 const Home = () => {
-  const[data, setData]=useState();
- const [lode, setLode] = useState(false);
- const [err, setErr] = useState();
-  
- 
-  
-  const getData = async()=>{
-    setLode(true);
-   try {
-    const responce = await axios.get('https://www.themealdb.com/api/json/v1/1/categories.php');
-    setLode(false);
-    setData(responce.data)
-   
-   } catch (error) {
-   
-    setLode(false);
-    setErr(err?.message);
-   }
-  }
-useEffect(()=>{
-getData();
-}, []);
+
+  const [lode, err, data] = useApiHooks({api: 'https://www.themealdb.com/api/json/v1/1/categories.php' });
+
 
 if(lode){
-  return <h1>Loading...</h1>
+  return <LoadingCompo/>
 }
 if(err){
   return <h1>{err}</h1>
@@ -43,8 +25,6 @@ if(err){
    {data?.categories.map((cata, i)=>{
    return <CategoryCard cata={cata} key={i}/>
    })}
-
-
 
     </div>
    
